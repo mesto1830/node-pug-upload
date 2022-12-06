@@ -13,7 +13,7 @@ app.get('/', (req, res, next) => {
   res.render('index')
 })
 app.post('/upload', async(req, res, next) => {
-  const file = req.files.fFile
+  const file = req.files.file
   await file.mv(path.join(__dirname,'static/uploads', file.name))
   res.render('index', {imgname: file.name})
 })
@@ -22,7 +22,7 @@ app.get('/multiupload', (req, res, next) => {
   res.render('multiupload')
 })
 app.post('/multiupload', async(req, res, next) => {
-  const files = req.files.fFile
+  const files = req.files.files
   if(files.length > 1){
     const imageList = files.map(item => {
       return item.mv(path.join(__dirname,'static/uploads', item.name))
